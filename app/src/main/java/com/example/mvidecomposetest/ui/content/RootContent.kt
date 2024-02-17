@@ -21,17 +21,9 @@ fun RootContent(
         ) {
             Children(stack = component.stack) {
                 when (val instance = it.instance) {
-                    is ContactListComponent -> {
-                        Contacts(component = instance)
-                    }
-
-                    is AddContactComponent -> {
-                        AddContact(component = instance)
-                    }
-
-                    is EditContactComponent -> {
-                        EditContact(component = instance)
-                    }
+                    is DefaultRootComponent.Child.AddContact -> AddContact(component = instance.component)
+                    is DefaultRootComponent.Child.ContactList -> Contacts(component = instance.component)
+                    is DefaultRootComponent.Child.EditContact -> EditContact(component = instance.component)
                 }
             }
         }
