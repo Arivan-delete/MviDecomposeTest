@@ -9,6 +9,7 @@ import com.example.mvidecomposetest.presentation.AddContactComponent
 import com.example.mvidecomposetest.presentation.ContactListComponent
 import com.example.mvidecomposetest.presentation.DefaultRootComponent
 import com.example.mvidecomposetest.presentation.EditContactComponent
+import com.example.mvidecomposetest.presentation.RootComponent
 import com.example.mvidecomposetest.ui.theme.MviDecomposeTestTheme
 
 @Composable
@@ -21,9 +22,9 @@ fun RootContent(
         ) {
             Children(stack = component.stack) {
                 when (val instance = it.instance) {
-                    is DefaultRootComponent.Child.AddContact -> AddContact(component = instance.component)
-                    is DefaultRootComponent.Child.ContactList -> Contacts(component = instance.component)
-                    is DefaultRootComponent.Child.EditContact -> EditContact(component = instance.component)
+                    is RootComponent.Child.AddContact -> AddContact(component = instance.component)
+                    is RootComponent.Child.ContactList -> Contacts(component = instance.component)
+                    is RootComponent.Child.EditContact -> EditContact(component = instance.component)
                 }
             }
         }
