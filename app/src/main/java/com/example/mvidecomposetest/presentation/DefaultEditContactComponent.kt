@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class DefaultEditContactComponent(
     componentContext: ComponentContext,
-    private val contact: Contact
+    private val contact: Contact,
+    private val onContactSaved: () -> Unit
 ) : EditContactComponent, ComponentContext by componentContext {
 
 
@@ -47,6 +48,7 @@ class DefaultEditContactComponent(
                 phone = phone
             )
         )
+        onContactSaved()
     }
 
     companion object {
