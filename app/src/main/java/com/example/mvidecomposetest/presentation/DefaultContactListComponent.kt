@@ -5,6 +5,7 @@ import com.arkivanov.essenty.backhandler.BackHandler
 import com.arkivanov.essenty.instancekeeper.InstanceKeeper
 import com.arkivanov.essenty.lifecycle.Lifecycle
 import com.arkivanov.essenty.statekeeper.StateKeeper
+import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import com.example.mvidecomposetest.core.componentScope
@@ -27,7 +28,10 @@ class DefaultContactListComponent(
     val onAddContactRequest: () -> Unit
 ) : ContactListComponent, ComponentContext by componentContext {
 
-    private lateinit var store: ContactListStore
+    private var store: ContactListStore = instanceKeeper.getStore {
+        val storeFactory = ContactListStoreFactory()
+        storeFactory.create()
+    }
 
     init {
         componentScope().launch {
